@@ -4,6 +4,10 @@ class Movie < ActiveRecord::Base
     end
     
     def self.with_ratings(ratings_list) #filters movies according to ratings
-        Movie.where(:rating => ratings_list).all
+        if (ratings_list)
+            Movie.where(:rating => ratings_list).all
+        else #if no rating filter is provided, return all movies
+            Movie.all
+        end
     end
 end
